@@ -7,9 +7,5 @@
             ]);
             
         }
-        function index(){
-            echo "yen vy";
-
-        }
     }
 ?>
