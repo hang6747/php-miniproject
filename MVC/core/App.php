@@ -10,11 +10,11 @@ class App{
         $arr = $this->UrlProcess();
  
         // Controller
-        if( file_exists("./MVC/controllers/".$arr[0].".php") ){
+        if(!empty($arr[0])&& file_exists("./MVC/controllers/".$arr[0].".php")) {
             $this->controller = $arr[0];
             unset($arr[0]);
         }
-        require_once "./MVC/controllers/". $this->controller .".php";
+        require_once "./MVC/controllers/".$this->controller .".php";   
         $this->controller = new $this->controller;
 
         // Action

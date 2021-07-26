@@ -1,7 +1,12 @@
 <?php
     class Home extends Controller{
         function show(){
-            echo "Test";
+            $test = $this->model("UserModel");
+            $test->getSV();
+        }
+        function index(){
+            echo "yen vy";
+
         }
     }
 ?>
