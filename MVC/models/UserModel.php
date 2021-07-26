@@ -13,10 +13,9 @@
             return $result;   
 	    }
 
-        public function RegisterUser($email, $password)
+        public function RegisterUser($email, $password, $fullname, $avatar, $phone)
         {
-            $sql = "INSERT INTO users VALUE('','$email', null, null, null, '$password')";
-            $result = false;
+            $sql = "INSERT INTO users VALUE('','$email', '$fullname','$avatar' ,'$phone', '$password')";
             if(mysqli_query($this->conn, $sql)){
                 return 1;
             }
