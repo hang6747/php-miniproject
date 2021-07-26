@@ -5,24 +5,10 @@
 		   
 		    $view = $this->view("index");
 	}
-    function kiemTra_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-      }
+  
        
     public function login()
 	{
-        $ten = $email = $gioi_tinh = $binh_luan = $website = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $ten = kiemTra_input($_POST["ten"]);
-  $email = kiemTra_input($_POST["email"]);
-  $website = kiemTra_input($_POST["website"]);
-  $binh_luan = kiemTra_input($_POST["binh_luan"]);
-  $gioi_tinh = kiemTra_input($_POST["gioi_tinh"]);
-}
         $email = $_POST['email'];
         $password = $_POST['password'];
       
