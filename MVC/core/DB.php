@@ -1,7 +1,7 @@
 <?php
     class DB{
         public $conn;
-        protected $severname = "localhost";
+        protected $severname = "localhost:3308";
         protected $username = "root";
         protected $password = "linhchi";
         protected $database = "sun";
@@ -9,11 +9,11 @@
         public function __construct()
         {
             $this->conn = mysqli_connect($this->severname, $this->username, $this->password, $this->database);
-            if(!$this->conn){
-                echo "Kết nối thành công!";
-            }else {
-                echo "Kết nối thất bại";
-            }
+            // if(!$this->conn){
+            //     echo "Kết nối thành công!";
+            // }else {
+            //     echo "Kết nối thất bại";
+            // }
 
         }
 

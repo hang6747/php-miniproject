@@ -2,7 +2,10 @@
     class Home extends Controller{
         function show(){
             $test = $this->model("UserModel");
-            $test->getSV();
+            $view = $this->view("index", [
+                "users" => $test->getUser()
+            ]);
+            
         }
         function index(){
             echo "yen vy";
