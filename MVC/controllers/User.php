@@ -3,7 +3,7 @@
         public function show()
 	    {
 		   
-		    $view = $this->view("user_create");
+		    $view = $this->view("login");
 	    }
   
        
@@ -19,9 +19,10 @@
         {
             echo "<script>alert('Sai mật khẩu hoặc tên đăng nhập')</script>";
             header('Location: ./');
+           
         }
         else{
-            $view = $this->view("test");
+            header('Location: ../Home');
         }
 	}
 
@@ -35,7 +36,7 @@
             $userModel = $this->model("UserModel");
             $kq = $userModel->RegisterUser($email, $password, $fullname, $avatar, $phone);
             if($kq==1) {
-                header('Location: ./');
+                header('Location: ../Home');
             }
             else{
                 echo "<script>alert('Trùng Email')</script>";
