@@ -1,28 +1,36 @@
 <?php
     class User extends Controller{
         public function show()
-	    {
-		   
-		    $view = $this->view("login");
+	    {   
+            $test = $this->model("UserModel");
+            $view = $this->view("index", [
+                "users" => $test->getUser()
+            ]);
+            // return $this->view("login");
 	    }
-  
-       
+        public function dangnhap()
+	    {   
+            return $this->view("login");
+	    }
+        public function dangki()
+	    {   
+            return $this->view("user_create");
+	    }
     public function login()
 	{
         $email = $_POST['email'];
         $password = $_POST['password'];
-      
+
         $userModel = $this->model("UserModel");
-            // echo $_POST["email"];
         $kq = $userModel->LoginUser($email, $password);
         if(mysqli_num_rows($kq)==0)
         {
             echo "<script>alert('Sai mật khẩu hoặc tên đăng nhập')</script>";
-            header('Location: ./');
-           
+            // header('Location: ../User');
         }
         else{
-            header('Location: ../Home');
+            $_SESSION['email'] = $email;
+            header('Location: ../User');
         }
 	}
 
@@ -36,11 +44,19 @@
             $userModel = $this->model("UserModel");
             $kq = $userModel->RegisterUser($email, $password, $fullname, $avatar, $phone);
             if($kq==1) {
-                header('Location: ../Home');
+                header('Location: ../User');
             }
             else{
-                echo "<script>alert('Trùng Email')</script>";
+                echo "<script>alert(' Email đã tồn tại')</script>";
+                // header('Location: ../Home');
             }
+        }
+    }
+
+    public function logout(){
+        if (isset($_SESSION['email'])){
+            unset($_SESSION['email']); 
+            header('Location: ../User');
         }
     }
 
