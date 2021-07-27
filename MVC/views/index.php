@@ -89,7 +89,7 @@
                                     <a href="#">List User</a>
                                 </li>
                                 <li>
-                                    <a href="#">Create User</a>
+                                    <a href="User/register">Create User</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
