@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +40,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">Admin</a>
+                <?php 
+                    if (isset($_SESSION['email'])) {
+                        echo "<a class='navbar-brand' href=''>" . $_SESSION['email'];
+                    }
+                    else {
+                        echo "<a class='navbar-brand' href=''> NONE" ;
+                    }
+                ?>
+                </a>
             </div>
             <!-- /.navbar-header -->
 
@@ -50,13 +59,18 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
+                    <?php 
+                    if (isset($_SESSION['email'])) { ?>
+                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
+                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="./User/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
+                    <?php }
+                    else { ?>
+                        <li><a href="./User/dangnhap"><i class="fa fa-user fa-fw"></i>Login</a></li>
+                        <li><a href="./User/dangki"><i class="fa fa-gear fa-fw"></i>Sign Up</a></li>
+                     <?php } ?>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
@@ -78,18 +92,16 @@
                             </div>
                             <!-- /input-group -->
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
+                        
                         
                         <li>
                             <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">List User</a>
+                                    <a href="./User">List User</a>
                                 </li>
                                 <li>
-                                    <a href="#">Create User</a>
+                                    <a href="./User/dangki">Create User</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -118,7 +130,7 @@
                                 <th>Email</th>
                                 <th>Fullname</th>
                                 <th>phone</th>
-                                <th>R-U-D</th>                   
+                                <th>C-R-U-D</th>                   
                             </tr>
                         </thead>
                         <tbody>
@@ -129,9 +141,9 @@
                                 <td><?php echo $row["fullname"]; ?></td>
                                 <td><?php echo $row["phone"]; ?> </td>
                                 <td class="center">
-                                    <button><a href="user_read.html"><i class="fa fa-eye"></i></button>
-                                    <button><a href="user_update.html"><i class="fa fa-pencil"></i></button>
-                                    <button><a href="#"><i class="fa fa-trash-o"></i></button>
+                                    <button><a href="./User/information/<?php echo $row["id"]; ?>"><i class="fa fa-eye"></i></button>
+                                    <button><a href="./User/update/<?php echo $row["id"]; ?>"><i class="fa fa-pencil"></i></button>
+                                    <button><a href="./User/delete/<?php echo $row["id"]; ?>" ><i class="fa fa-trash-o"></i></button>
                                 </td>
                             </tr>
                         <?php } ?>
