@@ -1,3 +1,12 @@
+<?php
+    $email ="";
+    $password="";
+    if(isset($_COOKIE["email"]) && isset($_COOKIE["password"])){
+        $email = $_COOKIE["email"];
+        $password = $_COOKIE["password"];
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,21 +25,21 @@
             <div class="col-md-4 col-md-offset-4 border mb-5 pb-5">
                 <div class="login-panel panel panel-default">
                     <div class="panel-heading">
-                        <h2 class="panel-title d-flex justify-content-center"><b>Login</b></h2>
+                        <h2 class="panel-title d-flex justify-content-center"><b>Login <?php echo $password; ?></b></h2>
                     </div>
                     <div class="panel-body">
                         <form role="form" action="./login" method="POST" >
                             <fieldset>
                                 <div class="form-group">
                                 <span id="email-info" class="info"></span><br />
-                                    <input  placeholder="E-mail" name="email" type="email" autofocus class="form-control">
+                                    <input  placeholder="E-mail" name="email" value = "<?php echo $email; ?> " type="email" autofocus class="form-control">
                                 </div>
                                 <div class="form-group ">
                                     <span id="password-info" class="info"></span><br />
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="" ">
+                                    <input class="form-control" placeholder="Password" value = "<?php echo $password; ?> " name="password" type="password">
                                 </div>
                                 <div class="mb-3 form-check ">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input type="checkbox" value="1" name="remember" class="form-check-input" id="exampleCheck1">
                                     <label class="form-check-label" for="exampleCheck1">Remember me</label>
                                 </div>
                                 <button type="submit" name="submit" class="btn btn-lg btn-primary btn-block">Login</button>

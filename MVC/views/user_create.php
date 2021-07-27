@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">Admin</a>
+                <a class="navbar-brand" href="./User">HOME</a>
             </div>
             <!-- /.navbar-header -->
 

@@ -19,25 +19,29 @@
     public function login()
 	{
         $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        $userModel = $this->model("UserModel");
-        $kq = $userModel->LoginUser($email, $password);
-        if(mysqli_num_rows($kq)==0)
-        {
-            echo "<script>alert('Sai mật khẩu hoặc tên đăng nhập')</script>";
+        $password =($_POST['password']);
+            if(isset($_POST["remember"])){
+                setcookie("email", $email);
+                setcookie("password", $password);
+            }
+            
+            $userModel = $this->model("UserModel");
+            $kq = $userModel->LoginUser($email, $password);
+            if(mysqli_num_rows($kq)==0)
+            {
+                echo "<script>alert('Sai mật khẩu hoặc tên đăng nhập')</script>";
             // header('Location: ../User');
-        }
-        else{
-            $_SESSION['email'] = $email;
-            header('Location: ../User');
-        }
+            }
+            else{
+                $_SESSION['email'] = $email;
+                header('Location: ../User');
+            }
 	}
 
     public function register(){
         if(isset($_POST["submit"])) {
             $email = $_POST["email"];
-            $password =  md5(md5($_POST["password"]));
+            $password =  md5($_POST["password"]);
             $fullname = $_POST["fullname"];
             $avatar = $_POST["avatar"];
             $phone = $_POST["phone"];
