@@ -32,11 +32,9 @@
 
         public function deleteUser($id){
             $sql = "DELETE FROM users WHERE id='$id' ";
-            if (mysqli_query($this->conn, $sql)) {
-                echo "Đã xóa";
-            } else {
-            echo "Lỗi delete: " . mysqli_error($conn);
-            }
+
+            $result = mysqli_query($this->conn, $sql);
+            return $result;
         }
 
         public function updateUser($id,$email, $password, $fullname, $avatar, $phone){
@@ -44,11 +42,9 @@
                         SET email='$email', fullname='$fullname', avatar='$avatar', phone='$phone', password='$password'
                         WHERE id='$id' 
                     ";
-            //$qu = "SELECT id, email FROM users WHERE id='$id'";
-            if(mysqli_query($this->conn, $sql)){
-                return 1;
-            }
-            return 0;
+            
+            $result = mysqli_query($this->conn, $sql);
+            return $result;  
         }
 
     }
