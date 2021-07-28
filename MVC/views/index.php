@@ -53,13 +53,24 @@
 
             <ul class="nav navbar-top-links navbar-right">
             <?php if(isset($_SESSION['errors']['success'])){                
-                             echo $_SESSION['errors']['success']; }
-                             ?>
-                             <?php
+                             echo $_SESSION['errors']['success']; 
+                           $_SESSION['errors']['success']=NULL;
+                   }
                   if(isset($_SESSION['errors']['logout'])) {
-                             echo $_SESSION['errors']['logout'];}
+                             echo $_SESSION['errors']['logout'];
+                             $_SESSION['errors']['logout']=NULL;
+                            }
+                            
+                             if(isset($_SESSION['errors']['update'])) {
+                                echo $_SESSION['errors']['update'];
+                                $_SESSION['errors']['update']=NULL;
+                            }
+                            if(isset($_SESSION['errors']['register'])) {
+                                echo $_SESSION['errors']['register'];
+                                $_SESSION['errors']['register']=NULL;
+                            }
+                           ?>
                   
-                        ?>
 
                 <!-- /.dropdown -->
                 <li class="dropdown">
@@ -151,7 +162,9 @@
                                 <td class="center">
                                     <button><a href="./User/information/<?php echo $row["id"]; ?>"><i class="fa fa-eye"></i></button>
                                     <button><a href="./User/update/<?php echo $row["id"]; ?>"><i class="fa fa-pencil"></i></button>
-                                    <button><a href="./User/delete/<?php echo $row["id"]; ?>" ><i class="fa fa-trash-o"></i></button>
+                                    <button>
+                                        <a  class="delete" href="./User/delete/<?php echo $row["id"]; ?>" >
+                                     <i class="fa fa-trash-o"></i></button>
                                 </td>
                             </tr>
                         <?php } ?>
@@ -168,6 +181,18 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script language="JavaScript" type="text/javascript">
+$(document).ready(function(){
+    $("a.delete").click(function(e){
+        if(!confirm('Are you sure?')){
+            e.preventDefault();
+            return false;
+        }
+        return true;
+    });
+});
+</script>
     <script src="public/bower_components/jquery/dist/jquery.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->

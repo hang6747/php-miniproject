@@ -33,6 +33,14 @@
 </head>
 
 <body>
+<?php 
+   if(isset($data['alert'])) {
+     echo $data['alert'];
+    }
+ ?>
+
+
+
 
     <div id="wrapper">
 
@@ -109,40 +117,40 @@
 
         <!-- Page Content -->
         <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
+        <div class="container-fluid">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-7 d-flex justify-content-center mb-5">
                         <h1 class="page-header">User
                             <small>Update</small>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
-                    <div class="col-lg-7" style="padding-bottom:120px">
+                    <div class="col-lg-6 border" style="padding-bottom:120px">
                         <?php while($row = mysqli_fetch_array($data["users"])){ ?>
-                            <h2><?php echo $row["email"]; ?></h2>
-                        <form action="./User/chinhsua/<?php echo $row["id"]; ?>" method="POST">
+                          
+                        <form action="../chinhsua/<?php echo $row["id"]; ?>" method="POST">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" class="form-control" name="email" placeholder="Please Enter Email" />
+                                <input type="email" class="form-control" value="<?php echo $row["email"] ?>" name="email" placeholder="<?php echo $row["email"] ?>" />
                             </div>
                             <div class="form-group">
                                 <label>Fullname</label>
-                                <input class="form-control" name="fullname" placeholder="Please Enter Fullname" />
+                                <input class="form-control" name="fullname" value="<?php echo $row["fullname"] ?>" placeholder="<?php echo $row["fullname"] ?>" />
                             </div>
                             <div class="form-group">
                                 <label>Avatar</label>
-                                <input type="file" name="avatar" />
+                                <input type="file" value="<?php echo $row["avatar"] ?>" name="avatar" />
                             </div>
                             <div class="form-group">
                                 <label>Phone</label>
-                                <input class="form-control" name="phone" placeholder="Please Enter Phone" />
+                                <input class="form-control" name="phone" value="<?php echo $row["phone"] ?>" placeholder="Please Enter Phone" />
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" class="form-control" name="password" placeholder="Please Enter Password" />
+                                <input type="password" class="form-control" value="<?php echo $row["password"] ?>" name="password" placeholder="Please Enter Password" />
                             </div>
-                            <button type="submit" class="btn btn-primary">Update</button>
-                            <button type="reset" class="btn btn-primary">Reset</button>
+                            <button type="submit" name="submit" class="btn btn-primary">Update</button>
+                            
                         <form>
                         <?php } ?>
                     </div>

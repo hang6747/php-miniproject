@@ -43,8 +43,10 @@
                         WHERE id='$id' 
                     ";
             
-            $result = mysqli_query($this->conn, $sql);
-            return $result;  
+           if(mysqli_query($this->conn, $sql)) {
+               return 1;
+           }
+            return 0;
         }
 
     }

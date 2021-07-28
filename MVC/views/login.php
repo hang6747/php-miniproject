@@ -4,7 +4,7 @@
     if(isset($_COOKIE["email"]) && isset($_COOKIE["password"])){
         $email = $_COOKIE["email"];
         $password = $_COOKIE["password"];
-        echo $email;
+      
     }
 ?>
 <!DOCTYPE html>
@@ -19,6 +19,11 @@
 </head>
 
 <body>
+<?php if(isset($_SESSION['errors']['register'])){                
+                             echo $_SESSION['errors']['register']; 
+                             $_SESSION['errors']['register'] = NULL;
+                            }
+                             ?>
 
     <div class="container">
         <div class="row d-flex justify-content-center mt-5 pt-5">

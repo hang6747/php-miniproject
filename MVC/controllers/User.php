@@ -41,10 +41,7 @@
         {          
             $test = $this->model("UserModel");
             $test->deleteUser($id); 
-            // $view = $this->view("index", [
-            //     "users" => $test->getUser()
-            // ]);
-            header('Location: ../User');
+            header('Location: http://localhost:7882/sun/php-miniproject/User');
         }
 
         
@@ -73,21 +70,7 @@
             unset($_SESSION['errors']);
             unset($_SESSION['data']);
         }
-        // if(empty($_SESSION['email'])){
-        //     if(isset($_COOKIE['email'])){   
-        //         $email = $_COOKIE['email'];
-        //         $password = $_COOKIE['password'];
-        //         $userModel = $this->model("UserModel");
-        //         $kq = $userModel->LoginUser($email, $password);
-        //         if(mysqli_num_rows($kq)!=0)
-        //         {
-        //             $_SESSION['email'] = $email;
-        //             header('Location: ../User');
-        //             exit;
-        //         }
 
-        //         }
-        //     }    
 
         if(isset($_POST["submit"])){
             $email = $_POST['email'];
@@ -154,11 +137,17 @@
             $userModel = $this->model("UserModel");
             $kq = $userModel->RegisterUser($email, $password, $fullname, $avatar, $phone);
             if($kq==1) {
+                $errors['register']  = "<script>alert('Đăng kí tài khoản thành công')</script>";
+                $_SESSION['errors'] = $errors;
                 header('Location: ../User');
             }
             else{
-                echo "<script>alert(' Email đã tồn tại')</script>";
-                // header('Location: ../Home');
+                $alert = "<script>alert('Email đã tồn tại ')</script>";
+                        $test = $this->model("UserModel");
+                        $view = $this->view("user_create", [
+                            
+                            "alert" => $alert,
+                        ]);
             }
         }
     }
@@ -190,6 +179,7 @@
 
         public function chinhsua($id)
         {   
+            $errors = [];
                 if (isset($_POST['submit'])) {
                     $email = $_POST['email'];
                     $fullname = $_POST['fullname'];
@@ -198,11 +188,20 @@
                     $password = $_POST['password'];
                     $test = $this->model("UserModel");
                     $kq = $test->updateUser($id,$email, $password, $fullname, $avatar, $phone);
-                   
-                    // $view = $this->view("index", [
-                    //     "users" => $kq
-                    // ]);
-                    header('Location: ../User');
+                    if($kq==1) {
+                        $errors['update']  = "<script>alert('Update thành công')</script>";
+                        $_SESSION['errors'] = $errors;
+                        header('Location: http://localhost:7882/sun/php-miniproject/User');
+                    }
+                    else{
+                        $alert = "<script>alert('Email đã tồn tại ')</script>";
+                        $test = $this->model("UserModel");
+                        $read = $test->readUser($id); 
+                        $view = $this->view("user_update", [
+                            "users" => $read,
+                            "alert" => $alert,
+                        ]);
+                    }
                 }   
         }
     

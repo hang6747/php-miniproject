@@ -32,7 +32,11 @@
 </head>
 
 <body>
-
+<?php 
+   if(isset($data['alert'])) {
+     echo $data['alert'];
+    }
+ ?>
     <div id="wrapper">
 
         <!-- Navigation -->
