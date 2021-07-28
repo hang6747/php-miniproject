@@ -26,6 +26,16 @@
             ]);
         }
 
+        public function delete($id)
+        {          
+            $test = $this->model("UserModel");
+            $test->deleteUser($id); 
+            // $view = $this->view("index", [
+            //     "users" => $test->getUser()
+            // ]);
+            header('Location: ../User');
+        }
+
         
     public function login()
 	{
@@ -71,6 +81,32 @@
         }
     }
 
+        public function update($id)
+            {   
+                $test = $this->model("UserModel");
+                $read = $test->readUser($id); 
+                $view = $this->view("user_update", [
+                    "users" => $read
+                ]);
+            }
+
+        public function chinhsua($id)
+        {   
+                if (isset($_POST['submit'])) {
+                    $email = $_POST['email'];
+                    $fullname = $_POST['fullname'];
+                    $avatar = $_POST['avatar'];
+                    $phone = $_POST['phone'];
+                    $password = $_POST['password'];
+                    $test = $this->model("UserModel");
+                    $kq = $test->updateUser($id,$email, $password, $fullname, $avatar, $phone);
+                   
+                    // $view = $this->view("index", [
+                    //     "users" => $kq
+                    // ]);
+                    header('Location: ../User');
+                }   
+        }
     
 }
 ?>
