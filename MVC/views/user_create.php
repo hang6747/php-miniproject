@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">Admin</a>
+                <a class="navbar-brand" href="../User">HOME</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -121,15 +121,21 @@
                             <div class="form-group">
                                 <label><b>Email </b></label>
                               
-                                <input type="email" class="form-control" name="email" placeholder="Please Enter Email" />
+                                <input type="email" class="form-control  <?php if(isset($_SESSION['errors']['email'])):?>is-invalid<?php endif?>" name="email" placeholder="Please Enter Email" />
+                                <?php if(isset($_SESSION['errors']['email'])):?>
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    <?php echo $_SESSION['errors']['email']?>
+                                    </div>
+                                <?php endif?>
                             </div>
                             <div class="form-group">
                                 <label><b>Fullname</b></label>
-                                <input class="form-control" name="fullname" placeholder="Please Enter Fullname" />
-                            </div>
-                            <div class="form-group">
-                                <label><b>Fullname</b></label>
-                                <i class="far fa-abacus"></i>
+                                <input class="form-control  <?php if(isset($_SESSION['errors']['fullname'])):?>is-invalid<?php endif?>" name="fullname" placeholder="Please Enter Fullname" />
+                                <?php if(isset($_SESSION['errors']['fullname'])):?>
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    <?php echo $_SESSION['errors']['fullname']?>
+                                    </div>
+                                <?php endif?>
                             </div>
                             <div class="form-group">
                                 <label><b>Avatar</b></label>
@@ -141,11 +147,16 @@
                             </div>
                             <div class="form-group">
                                 <label><b>Password</b></label>
-                                <input type="password" class="form-control" name="password" placeholder="Please Enter Password" />
+                                <input type="password" class="form-control  <?php if(isset($_SESSION['errors']['password'])):?>is-invalid<?php endif?>" name="password" placeholder="Please Enter Password" />
+                                    <?php if(isset($_SESSION['errors']['password'])):?>
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    <?php echo $_SESSION['errors']['password']?>
+                                    </div>
+                                <?php endif?>
                             </div>
                             
                             <button type="submit" class="btn btn-primary" name="submit">Create</button>
-                            <button type="reset" class="btn btn-primary">Reset</button>
+                            <!-- <button type="reset" name="reset" class="btn btn-primary">Reset</button> -->
                         <form>
                     </div>
                 </div>
