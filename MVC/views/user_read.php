@@ -6,25 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Khóa Học Lập Trình Laravel Framework 5.x Tại Khoa Phạm">
     <meta name="author" content="">
-    <title>Admin - Khoa Phạm</title>
+    <title>Admin</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Bootstrap Core CSS -->
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- <link href="public/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 
     <!-- MetisMenu CSS -->
-    <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <!-- <link href="public/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet"> -->
 
     <!-- Custom CSS -->
-    <link href="dist/css/sb-admin-2.css" rel="stylesheet">
+    <!-- <link href="public/dist/css/sb-admin-2.css" rel="stylesheet"> -->
 
     <!-- Custom Fonts -->
-    <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="public/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
 
     <!-- DataTables CSS -->
-    <link href="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
+    <!-- <link href="public/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet"> -->
 
     <!-- DataTables Responsive CSS -->
-    <link href="bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+    <!-- <link href="public/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet"> -->
 </head>
 
 <body>
@@ -113,29 +118,30 @@
                     </div>
                     <!-- /.col-lg-12 -->
                     <div class="col-lg-7" style="padding-bottom:120px">
-                       
+                        
+                            <?php while($row = mysqli_fetch_array($data["users"])){ ?>
                             <div class="form-group">
                                 <label>Email</label>
-                                <div>abcccc</div>
+                                <div><?php echo $row["email"]; ?></div>
                             </div>
                             <div class="form-group">
                                 <label>Fullname</label>
-                                
+                                <div><?php echo $row["fullname"]; ?></div>
                             </div>
                             <div class="form-group">
                                 <label>Avatar</label>
-                                
+                                <div><?php echo $row["avatar"]; ?></div>
                             </div>
                             <div class="form-group">
                                 <label>Phone</label>
-                                
+                                <div><?php echo $row["phone"]; ?></div>
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
-                                
+                                <div><?php echo $row["password"]; ?></div>
                             </div>
-                            
-                       
+                            <?php } ?>
+                        
                     </div>
                 </div>
                 <!-- /.row -->
@@ -147,21 +153,14 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="dist/js/sb-admin-2.js"></script>
-
+ 
     <!-- DataTables JavaScript -->
-    <script src="bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
-    <script src="bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
+    <!-- <script src="public/bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
+    <script src="public/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
     <script>

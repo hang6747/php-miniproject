@@ -5,6 +5,10 @@
         protected $username = "root";
         protected $password = "linhchi";
         protected $database = "sun";
+        // protected $severname = "localhost";
+        // protected $username = "root";
+        // protected $password = "";
+        // protected $database = "sun";
 
         public function __construct()
         {
