@@ -29,7 +29,7 @@
 <body>
 
     <div id="wrapper">
-
+ 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -52,6 +52,15 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+            <?php if(isset($_SESSION['errors']['success'])){                
+                             echo $_SESSION['errors']['success']; }
+                             ?>
+                             <?php
+                  if(isset($_SESSION['errors']['logout'])) {
+                             echo $_SESSION['errors']['logout'];}
+                  
+                        ?>
+
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
