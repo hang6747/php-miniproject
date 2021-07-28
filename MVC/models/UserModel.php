@@ -22,5 +22,34 @@
             return 0;
         }
 
+        public function readUser($id)
+        {
+            $sql = "SELECT * FROM users WHERE id = '$id' ";
+            
+            $result = mysqli_query($this->conn, $sql);
+            return $result;   
+        }
+
+        public function deleteUser($id){
+            $sql = "DELETE FROM users WHERE id='$id' ";
+            if (mysqli_query($this->conn, $sql)) {
+                echo "Đã xóa";
+            } else {
+            echo "Lỗi delete: " . mysqli_error($conn);
+            }
+        }
+
+        public function updateUser($id,$email, $password, $fullname, $avatar, $phone){
+            $sql = "UPDATE users 
+                        SET email='$email', fullname='$fullname', avatar='$avatar', phone='$phone', password='$password'
+                        WHERE id='$id' 
+                    ";
+            //$qu = "SELECT id, email FROM users WHERE id='$id'";
+            if(mysqli_query($this->conn, $sql)){
+                return 1;
+            }
+            return 0;
+        }
+
     }
 ?>

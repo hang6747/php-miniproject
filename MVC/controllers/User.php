@@ -16,6 +16,17 @@
 	    {   
             return $this->view("user_create");
 	    }
+       
+        public function information($id)
+        {          
+            $test = $this->model("UserModel");
+            $read = $test->readUser($id); 
+            $view = $this->view("user_read", [
+                "users" => $read
+            ]);
+        }
+
+        
     public function login()
 	{
         $email = $_POST['email'];
