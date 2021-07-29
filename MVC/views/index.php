@@ -6,53 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="">
     <title>LIST USER</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="public/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="public/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="public/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="public/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- DataTables CSS -->
-    <link href="public/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- DataTables Responsive CSS -->
-    <link href="public/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
-
-    <div id="wrapper">
- 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <?php 
-                    if (isset($_SESSION['email'])) {
-                        echo "<a class='navbar-brand' href=''>" . $_SESSION['email'];
-                    }
-                    else {
-                        echo "<a class='navbar-brand' href=''> NONE" ;
-                    }
-                ?>
-                </a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-            <?php if(isset($_SESSION['errors']['success'])){                
+<?php if(isset($_SESSION['errors']['success'])){                
                              echo $_SESSION['errors']['success']; 
                            $_SESSION['errors']['success']=NULL;
                    }
@@ -70,114 +34,146 @@
                                 $_SESSION['errors']['register']=NULL;
                             }
                            ?>
-                  
-
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+    <div class="pos-f-t container-fluid">
+  <div class="collapse " id="navbarToggleExternalContent">
+    <div class="bg-dark pt-2" style="padding-bottom:-20px;">
+    <nav class="navbar navbar-expand-md navbar-light">
+    <div class="container-fluid d-flex flex-md-wrap justify-content-around">
+        <div class=" " id="collapsingNavbar" >
+            <ul class="nav navbar-nav d-flex justify-content-around mt-2">
+                <li class="nav-item ">
+                   <a class="nav-link mr-5" style="color:white;" href="./User"><h5><b>HOME PAGE</b></h5></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mr-5" href="./User"  style="color:white;"><h5><b>LIST USER</b></h5></a>
+                </li>
+                <?php if (isset($_SESSION['email'])) { ?>
+                <li class="nav-item">
+                    <a class="nav-link mr-5" href="./User/information/<?php while($row = mysqli_fetch_array($data["test"])){echo $row["id"]; }?>" style="color:white;"><h5><b>PROFILE</b></h5></a>
+                </li>
+                <?php } ?>
+                <li class="dropdown mt-2">
+                    <a class="dropdown-toggle" style="color:white;" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> 
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                     <?php 
                     if (isset($_SESSION['email'])) { ?>
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a></li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
-                        <li class="divider"></li>
-                        <li><a href="./User/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    
+                        <li><a href="./User/logout" style="color:black; font-size:15px;" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     <?php }
                     else { ?>
-                        <li><a href="./User/dangnhap"><i class="fa fa-user fa-fw"></i>Login</a></li>
-                        <li><a href="./User/dangki"><i class="fa fa-gear fa-fw"></i>Sign Up</a></li>
+                        <li><a href="./User/dangnhap"style="color:black; font-size:15px;  "><i class="fa fa-user fa-fw"></i>Login</a></li>
+                        <li><a href="./User/dangki" style="color:black; font-size:15px;"><i class="fa fa-gear fa-fw"></i>Sign Up</a></li>
                      <?php } ?>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
-                <!-- /.dropdown -->
             </ul>
-            <!-- /.navbar-top-links -->
+        </div>
+    </div>
+</nav>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div>
 
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        
-                        
-                        <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="./User">List User</a>
-                                </li>
-                                <li>
-                                    <a href="./User/dangki">Create User</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
+          
+    <!-- <div id="wrapper"  class="container-fluid row ">
+   -->
+             
         <!-- Page Content -->
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">User
-                            <small>List</small>
-                        </h1>
+        <div id="page-wrapper" class=" d-flex container-fluid" >
+            
+            <div class = "user col-2 d-flex justify-content-center" style = "background-color: #cccccc;"  >
+            
+                <div class="mt-4">
+                    
+                    
+                <?php while($row = mysqli_fetch_array($data["test"])){ 
+				if(($row["avatar"]!=NULL)){  ?>
+                       <img class ="ml-5" src = "public/upload/images/" <?php echo $row["avatar"]; ?> style="border-radius:50%; height:100px; width:10px;"> 
+                   
+                      
+                <?php } else { ?>
+                    <img class='ml-5 ' src ="public/upload/images/avatar.png" style="border-radius:50%; height:100px; width:100px;"> 
+              <?php
+                    }
+                }
+                    ?>
+                    <?php
+                    if (isset($_SESSION['email'])) {
+                        echo "<a class='navbar-brand col-10 mt-3' href=''>" . $_SESSION['email'];
+                    }
+                    else {
+                        echo "<a class='navbar-brand col-10 ml-5 mt-3' href=''> NONE" ;
+                    }
+                    ?>
+                    <div >
+                        <a href="./User/dangki" class="ml-5"><b>CREATE USER </b> <i class="fa fa-plus" aria-hidden="true"></i></a>
+
                     </div>
+                 
+
+                   
+                </div>
+                
+
+                
+            </div>
+         
+            <div class="row col-10  d-flex justify-content-center mt-5">
+                <div class="col-lg-12 d-flex justify-content-center  mb-3  ">
+                    <h1 class="page-header">USER MANAGE </h1>
+                </div>
                     <!-- /.col-lg-12 -->
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-                        <thead>
+                        <thead class="thead-dark">
                             <tr align="center">
-                                <th>ID</th>
-                                <th>Email</th>
-                                <th>Fullname</th>
-                                <th>phone</th>
-                                <th>C-R-U-D</th>                   
+                                <th class="text-align" style="font-size: 25px;">ID</th>
+                                <th style="font-size: 22px;">Email</th>
+                                <th style="font-size: 22px;">Fullname</th>
+                                <th style="font-size: 22px;">Phone</th>
+                                <?php if(isset($_SESSION['email'])) { ?>
+                                <th style="font-size: 25px;">C-R-U-D</th>   
+                                <?php } ?>                
                             </tr>
                         </thead>
                         <tbody>
                         <?php while($row = mysqli_fetch_array($data["users"])){ ?>
+                        
                             <tr class="odd gradeX" align="center">
-                                <td><?php echo $row["id"]; ?></td>
-                                <td><?php echo $row["email"]; ?></td>
-                                <td><?php echo $row["fullname"]; ?></td>
-                                <td><?php echo $row["phone"]; ?> </td>
+                                <td  style="font-size: 15px;"><b><?php echo $row["id"]; ?></b></td>
+                                <td  style="font-size: 15px;"><?php echo $row["email"]; ?></td>
+                                <td  style="font-size: 15px;" ><?php echo $row["fullname"]; ?></td>
+                                <td  style="font-size: 15px;"><?php echo $row["phone"]; ?> </td>
+                                <?php if(isset($_SESSION['email'])) { ?>
                                 <td class="center">
-                                    <button><a href="./User/information/<?php echo $row["id"]; ?>"><i class="fa fa-eye"></i></button>
-                                    <button><a href="./User/update/<?php echo $row["id"]; ?>"><i class="fa fa-pencil"></i></button>
-                                    <button>
+                                  
+                                    <a href="./User/information/<?php echo $row["id"]; ?>"><i class="fa fa-eye mr-3"></i> </a>
                                         <a  class="delete" href="./User/delete/<?php echo $row["id"]; ?>" >
-                                     <i class="fa fa-trash-o"></i></button>
+                                     <i class="fa fa-trash-o"></i></a>
                                 </td>
+                                <?php } ?>
                             </tr>
                         <?php } ?>
+                       
                         </tbody>
                     </table>
                 </div>
                 <!-- /.row -->
-            </div>
+         
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
 
     </div>
+    
     <!-- /#wrapper -->
 
     <!-- jQuery -->
@@ -193,22 +189,10 @@ $(document).ready(function(){
     });
 });
 </script>
-    <script src="public/bower_components/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="public/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="public/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="public/dist/js/sb-admin-2.js"></script>
-
-    <!-- DataTables JavaScript -->
-    <script src="public/bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
-    <script src="public/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
-
-    <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script>
     $(document).ready(function() {
         $('#dataTables-example').DataTable({
