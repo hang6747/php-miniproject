@@ -42,14 +42,14 @@
         <div class=" " id="collapsingNavbar" >
             <ul class="nav navbar-nav d-flex justify-content-around mt-2">
                 <li class="nav-item ">
-                   <a class="nav-link mr-5" style="color:white;" href="./User"><h5><b>HOME PAGE</b></h5></a>
+                   <a class="nav-link mr-5" style="color:white;" href="<?php echo $_SESSION['url']?>User"><h5><b>HOME PAGE</b></h5></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mr-5" href="./User"  style="color:white;"><h5><b>LIST USER</b></h5></a>
+                    <a class="nav-link mr-5" href="<?php echo $_SESSION['url']?>User"  style="color:white;"><h5><b>LIST USER</b></h5></a>
                 </li>
                 <?php if (isset($_SESSION['email'])) { ?>
                 <li class="nav-item">
-                    <a class="nav-link mr-5" href="./User/information/  <?php while($row = mysqli_fetch_array($data["test"])){ echo $row["id"]; }?>" style="color:white;"><h5><b>PROFILE</b></h5></a>
+                    <a class="nav-link mr-5" href="<?php echo $_SESSION['url']?>User/information/  <?php while($row = mysqli_fetch_array($data["test"])){ echo $row["id"]; }?>" style="color:white;"><h5><b>PROFILE</b></h5></a>
                 </li>
                 <?php } ?>
                 <li class="dropdown mt-2">
@@ -60,12 +60,12 @@
                     <?php 
                     if (isset($_SESSION['email'])) { ?>
                     
-                        <li><a href="./User/logout" style="color:black; font-size:15px;" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="<?php echo $_SESSION['url']?>User/logout" style="color:black; font-size:15px;" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     <?php }
                     else { ?>
-                        <li><a href="./User/dangnhap"style="color:black; font-size:15px;  "><i class="fa fa-user fa-fw"></i>Login</a></li>
-                        <li><a href="./User/dangki" style="color:black; font-size:15px;"><i class="fa fa-gear fa-fw"></i>Sign Up</a></li>
+                        <li><a href="<?php echo $_SESSION['url']?>User/dangnhap"style="color:black; font-size:15px;  "><i class="fa fa-user fa-fw"></i>Login</a></li>
+                        <li><a href="<?php echo $_SESSION['url']?>User/dangki" style="color:black; font-size:15px;"><i class="fa fa-gear fa-fw"></i>Sign Up</a></li>
                      <?php } ?>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -95,10 +95,10 @@
                 <div class="mt-4">
                 <?php while($row = mysqli_fetch_array($data["kq"])){ 
 				if(($row["avatar"]!=NULL)){  ?>
-                       <img class ="ml-5" src = "public/upload/images/<?php echo $row["avatar"]; ?>" style="border-radius:50%; height:130px; width:130px;">       
+                       <img class ="ml-5" src = "<?php echo $_SESSION['url']?>public/upload/images/<?php echo $row["avatar"]; ?>" style="border-radius:50%; height:130px; width:130px;">       
                       
                 <?php } else { ?>
-                    <img class='ml-5 ' src ="public/upload/images/avatar.png" style="border-radius:50%; height:130px; width:130px;"> 
+                    <img class='ml-5 ' src ="<?php echo $_SESSION['url']?>public/upload/images/avatar.png" style="border-radius:50%; height:130px; width:130px;"> 
               <?php
                     }
                 }
@@ -113,7 +113,7 @@
                     }
                     ?>
                     <div >
-                        <a href="./User/dangki" class="ml-5"><b>CREATE USER </b> <i class="fa fa-plus" aria-hidden="true"></i></a>
+                        <a href="<?php echo $_SESSION['url']?>User/dangki" class="ml-5"><b>CREATE USER </b> <i class="fa fa-plus" aria-hidden="true"></i></a>
 
                     </div>
                  
@@ -153,8 +153,8 @@
                                 <?php if(isset($_SESSION['email'])) { ?>
                                 <td class="center">
                                   
-                                    <a href="./User/information/<?php echo $row["id"]; ?>"><i class="fa fa-eye mr-3"></i> </a>
-                                        <a  class="delete" href="./User/delete/<?php echo $row["id"]; ?>" >
+                                    <a href="<?php echo $_SESSION['url']?>User/information/<?php echo $row["id"]; ?>"><i class="fa fa-eye mr-3"></i> </a>
+                                        <a  class="delete" href="<?php echo $_SESSION['url']?>User/delete/<?php echo $row["id"]; ?>" >
                                      <i class="fa fa-trash-o"></i></a>
                                 </td>
                                 <?php } ?>

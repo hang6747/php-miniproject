@@ -49,10 +49,10 @@
         <div class=" " id="collapsingNavbar" >
             <ul class="nav navbar-nav d-flex justify-content-around">
                 <li class="nav-item ">
-                   <a class="nav-link mr-5" style="color:white;" href="http://localhost:7882/sun/php-miniproject/User"><h5><b>HOME PAGE</b></h5></a>
+                   <a class="nav-link mr-5" style="color:white;" href="<?php echo $_SESSION['url']?>User"><h5><b>HOME PAGE</b></h5></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mr-5" href="http://localhost:7882/sun/php-miniproject/User"  style="color:white;"><h5><b>LIST USER</b></h5></a>
+                    <a class="nav-link mr-5" href="<?php echo $_SESSION['url']?>User"  style="color:white;"><h5><b>LIST USER</b></h5></a>
                 </li>
                 <?php if (isset($_SESSION['email'])) { ?>
                 <li class="nav-item">
@@ -68,12 +68,12 @@
                     if (isset($_SESSION['email'])) { ?>
                         <li><a href="#" style="color:black; font-size:15px; "><i class="fa fa-gear fa-fw" ></i> Update Profile</a></li>
                        
-                        <li><a href="./User/logout" style="color:black; font-size:15px;" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="<?php echo $_SESSION['url']?>User/logout" style="color:black; font-size:15px;" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     <?php }
                     else { ?>
-                        <li><a href="./User/dangnhap"style="color:black; font-size:15px;  "><i class="fa fa-user fa-fw"></i>Login</a></li>
-                        <li><a href="./User/dangki" style="color:black; font-size:15px;"><i class="fa fa-gear fa-fw"></i>Sign Up</a></li>
+                        <li><a href="<?php echo $_SESSION['url']?>User/dangnhap"style="color:black; font-size:15px;  "><i class="fa fa-user fa-fw"></i>Login</a></li>
+                        <li><a href="<?php echo $_SESSION['url']?>User/dangki" style="color:black; font-size:15px;"><i class="fa fa-gear fa-fw"></i>Sign Up</a></li>
                      <?php } ?>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -112,9 +112,9 @@
 			<div class ="image mb-3 mt-3">
             <?php while($row = mysqli_fetch_array($data["users"])){ 
 				if(($row["avatar"]!=NULL)){  ?>
-					<img src="<?php echo "http://localhost:7882/sun/php-miniproject/public/upload/images/" . $row["avatar"]; ?>" style="width:250px; height:250px;float:left; border-radius:50% ; margin-right: 50px;" >
+					<img src="<?php echo $_SESSION['url']. "public/upload/images/" . $row["avatar"]; ?>" style="width:250px; height:250px;float:left; border-radius:50% ; margin-right: 50px;" >
 				<?php } else { ?>
-					<img src="http://localhost:7882/sun/php-miniproject/public/upload/images/avatar.png" style="width:250px; height:250px;float:left; border-radius:50% ; margin-right: 50px;" >
+					<img src="<?php echo $_SESSION['url']. "public/upload/images/avatar.png"?>" style="width:250px; height:250px;float:left; border-radius:50% ; margin-right: 50px;" >
 				<?php } ?>
 			</div>
 			<div class="user-name d-flex justify-content-center flex-column align-items-center" style="margin-left:-84px">
@@ -123,7 +123,7 @@
 				<p style="border-bottom: 1px solid #DCDCDC;"><?php echo $row["email"];?></p>
 			</div>
 			<div class="phone">
-				<p style="border-bottom: 1px solid #DCDCDC;" ><img src="http://localhost:7882/sun/php-miniproject/public/upload/images/phone.jpg" style="height: 30px; width: 30px;" class="mr-2">  <?php echo $row["phone"];?></p>
+				<p style="border-bottom: 1px solid #DCDCDC;" ><img src="<?php echo $_SESSION['url']. "public/upload/images/phone.jpg"?>" style="height: 30px; width: 30px;" class="mr-2">  <?php echo $row["phone"];?></p>
 			</div>
 			
 		</div>		

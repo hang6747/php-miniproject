@@ -1,22 +1,25 @@
 <?php
     class User extends Controller{
+        public $url = "http://localhost:7882/sun/php-miniproject/";
+        public function __construct()
+        {
+            if(empty($_SESSION['email'])){
+                if(isset($_COOKIE['email'])){   
+                    $email = $_COOKIE['email'];
+                    $password = $_COOKIE['password'];
+                    $userModel = $this->model("UserModel");
+                    $kq = $userModel->LoginUser($email, $password);
+                    if(mysqli_num_rows($kq)!=0)
+                    {
+                        $_SESSION['email'] = $email;
+    
+                    }
+                    }
+                }  
+            $_SESSION['url'] = $this->url;
+        }
         public function show()
-	    {    if(empty($_SESSION['email'])){
-            if(isset($_COOKIE['email'])){   
-                $email = $_COOKIE['email'];
-                $password = $_COOKIE['password'];
-                $userModel = $this->model("UserModel");
-                $kq = $userModel->LoginUser($email, $password);
-               
-               
-             
-                if(mysqli_num_rows($kq)!=0)
-                {
-                    $_SESSION['email'] = $email;
-
-                }
-                }
-            }  
+	    {   
             $test = $this->model("UserModel");
             $email = NULL;
             if (isset($_SESSION["email"]))
@@ -28,7 +31,6 @@
                 "users" => $test->getUser(),
                 "test" => $test->findUserEmail($email),
                 "kq"   => $test->findUserEmail($email),
-               
             ]);
 	    }
         
@@ -54,7 +56,8 @@
         {          
             $test = $this->model("UserModel");
             $test->deleteUser($id); 
-            header('Location: http://localhost:7882/sun/php-miniproject/User');
+            $url1 = $this->url ."/User";
+            header("Location: $url1");
         }
 
         
@@ -77,7 +80,8 @@
             {
                 $_SESSION['errors'] = $errors;
                 $_SESSION['data'] = $_POST;
-                header("location: ../User/dangnhap");
+                $url1 = $this->url."User/dangnhap";
+                header("location: $url1");
                 exit();
             }
             unset($_SESSION['errors']);
@@ -94,16 +98,18 @@
                 $kq = $userModel->LoginUser($email, $password);
                 if(mysqli_num_rows($kq)==0)
                 {
-                    $errors['er']  ="Sai email hoặc mật khẩu !";
+                    $errors['er']  ="<script>alert ('Sai email hoặc mật khẩu !')</script>";
                     $_SESSION['errors'] = $errors;
-                    header('Location: ../User/dangnhap');
+                    $url1 = $this->url."User/dangnhap";
+                    header("location: $url1");
                 }
                 else{
                     $_SESSION['email'] = $email;
                     $_SESSION['password'] = $password;
                     $errors['success']  = "<script>alert('Đăng nhập thành công')</script>";
                     $_SESSION['errors'] = $errors;
-                    header('Location: ../User');
+                    $url1 = $this->url."User";
+                header("location: $url1");
                 }
 	    }
 
@@ -134,7 +140,8 @@
             {
                 $_SESSION['errors'] = $errors;
                 $_SESSION['data'] = $_POST;
-                header("location: ../User/dangki");
+                $url1 = $this->url."User/dangki";
+                header("location: $url1");
                 exit();
             }
             unset($_SESSION['errors']);
@@ -161,7 +168,8 @@
             if($kq==1) {
                 $errors['register']  = "<script>alert('Đăng kí thành công ')</script>";
                 $_SESSION['errors'] = $errors;
-                header('Location: ../User');
+                $url1 = $this->url."User";
+                header("location: $url1");
             }
             else{
                 $alert = "<script>alert('Email đã tồn tại ')</script>";
@@ -184,7 +192,8 @@
             unset($_SESSION['email']); 
             $errors['logout']  = "<script>alert('Đã đăng xuất')</script>";
             $_SESSION['errors'] = $errors;
-            header('Location: ../User');
+            $url1 = $this->url."User";
+            header("location: $url1");
 
         }
     }
@@ -208,7 +217,8 @@
             {
                 $_SESSION['errors'] = $errors;
                 $_SESSION['data'] = $_POST;
-                header("location: ../information/$id");
+                $url1 = $this->url."information/".$id;
+                header("location: $url1");
                 exit();
             }
             unset($_SESSION['errors']);
@@ -236,7 +246,8 @@
                     if($kq==1) {
                         $errors['update']  = "<script>alert('Update thành công')</script>";
                         $_SESSION['errors'] = $errors;
-                        header('Location: http://localhost:7882/sun/php-miniproject/User');
+                        $url1 = $this->url."User";
+                        header("location: $url1");
                     }
                     else{
                         $errors['update']  = "<script>alert('Email đã tồn tại!')</script>";
