@@ -1,14 +1,14 @@
 <?php
     class DB{
         public $conn;
-        protected $severname = "localhost:3308";
-        protected $username = "root";
-        protected $password = "linhchi";
-        protected $database = "sun";
-        // protected $severname = "localhost";
+        // protected $severname = "localhost:3308";
         // protected $username = "root";
-        // protected $password = "";
+        // protected $password = "linhchi";
         // protected $database = "sun";
+        protected $severname = "localhost";
+        protected $username = "root";
+        protected $password = "";
+        protected $database = "sun";
 
         public function __construct()
         {

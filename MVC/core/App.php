@@ -24,6 +24,10 @@ class App{
             }
             unset($arr[1]);
         }
+        else{
+            array_push($arr, "1");
+            unset($arr[2]);
+        }
 
         // Params
         $this->params = $arr?array_values($arr):[];
