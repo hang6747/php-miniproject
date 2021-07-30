@@ -47,14 +47,14 @@
         <div class=" " id="collapsingNavbar" >
             <ul class="nav navbar-nav d-flex justify-content-around">
                 <li class="nav-item ">
-                   <a class="nav-link mr-5" style="color:white;" href="http://localhost:7882/sun/php-miniproject/User"><h5><b>HOME PAGE</b></h5></a>
+                   <a class="nav-link mr-5" style="color:white;" href="<?php echo $_SESSION['url']?>User"><h5><b>HOME PAGE</b></h5></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mr-5" href="http://localhost:7882/sun/php-miniproject/User"  style="color:white;"><h5><b>LIST USER</b></h5></a>
+                    <a class="nav-link mr-5" href="<?php echo $_SESSION['url']?>User"  style="color:white;"><h5><b>LIST USER</b></h5></a>
                 </li>
                 <?php if (isset($_SESSION['email'])) { ?>
                 <li class="nav-item">
-                    <a class="nav-link mr-5" href="#"  style="color:white;"><h5><b>PROFILE</b></h5></a>
+                    <a class="nav-link mr-5" href="<?php echo $_SESSION['url']?>User/information/<?php while($row = mysqli_fetch_array($data["test"])){ echo $row["id"]; }?>"  style="color:white;"><h5><b>PROFILE</b></h5></a>
                 </li>
                 <?php } ?>
                 <li class="dropdown mt-2">
@@ -66,12 +66,12 @@
                     if (isset($_SESSION['email'])) { ?>
                         <li><a href="#" style="color:black; font-size:15px; "><i class="fa fa-gear fa-fw" ></i> Update Profile</a></li>
                        
-                        <li><a href="./User/logout" style="color:black; font-size:15px;" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="<?php echo $_SESSION['url']?>User/logout" style="color:black; font-size:15px;" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     <?php }
                     else { ?>
-                        <li><a href="./User/dangnhap"style="color:black; font-size:15px;  "><i class="fa fa-user fa-fw"></i>Login</a></li>
-                        <li><a href="./User/dangki" style="color:black; font-size:15px;"><i class="fa fa-gear fa-fw"></i>Sign Up</a></li>
+                        <li><a href="<?php echo $_SESSION['url']?>User/dangnhap"style="color:black; font-size:15px;  "><i class="fa fa-user fa-fw"></i>Login</a></li>
+                        <li><a href="<?php echo $_SESSION['url']?>User/dangki" style="color:black; font-size:15px;"><i class="fa fa-gear fa-fw"></i>Sign Up</a></li>
                      <?php } ?>
                     </ul>
                     <!-- /.dropdown-user -->
