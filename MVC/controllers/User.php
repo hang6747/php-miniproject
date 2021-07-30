@@ -27,6 +27,7 @@
             $view = $this->view("index", [
                 "users" => $test->getUser(),
                 "test" => $test->findUserEmail($email),
+                "kq"   => $test->findUserEmail($email),
                
             ]);
 	    }
@@ -153,7 +154,6 @@
             }
             else{
                 $avatar= NULL;
-                
             }
             $phone = $_POST["phone"];
             $userModel = $this->model("UserModel");

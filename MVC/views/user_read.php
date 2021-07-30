@@ -109,12 +109,12 @@
 			<div class=" ml-5 pl-2 mb-2">
 				<h4 style="margin-left: 29px;">Profile</h4>
 			</div>
-			<div class ="image mb-3">
+			<div class ="image mb-3 mt-3">
             <?php while($row = mysqli_fetch_array($data["users"])){ 
 				if(($row["avatar"]!=NULL)){  ?>
-					<img src="<?php echo "http://localhost:7882/sun/php-miniproject/public/upload/images/" . $row["avatar"]; ?>" style="width:230px; height:230px;float:left; border-radius:50% ; margin-right: 50px;" >
+					<img src="<?php echo "http://localhost:7882/sun/php-miniproject/public/upload/images/" . $row["avatar"]; ?>" style="width:250px; height:250px;float:left; border-radius:50% ; margin-right: 50px;" >
 				<?php } else { ?>
-					<img src="http://localhost:7882/sun/php-miniproject/public/upload/images/avatar.png" style="width:230px; height:230px;float:left; border-radius:50% ; margin-right: 50px;" >
+					<img src="http://localhost:7882/sun/php-miniproject/public/upload/images/avatar.png" style="width:250px; height:250px;float:left; border-radius:50% ; margin-right: 50px;" >
 				<?php } ?>
 			</div>
 			<div class="user-name d-flex justify-content-center flex-column align-items-center" style="margin-left:-84px">

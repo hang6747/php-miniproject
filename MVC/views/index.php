@@ -49,7 +49,7 @@
                 </li>
                 <?php if (isset($_SESSION['email'])) { ?>
                 <li class="nav-item">
-                    <a class="nav-link mr-5" href="./User/information/<?php while($row = mysqli_fetch_array($data["test"])){echo $row["id"]; }?>" style="color:white;"><h5><b>PROFILE</b></h5></a>
+                    <a class="nav-link mr-5" href="./User/information/  <?php while($row = mysqli_fetch_array($data["test"])){ echo $row["id"]; }?>" style="color:white;"><h5><b>PROFILE</b></h5></a>
                 </li>
                 <?php } ?>
                 <li class="dropdown mt-2">
@@ -93,19 +93,17 @@
             <div class = "user col-2 d-flex justify-content-center" style = "background-color: #cccccc;"  >
             
                 <div class="mt-4">
-                    
-                    
-                <?php while($row = mysqli_fetch_array($data["test"])){ 
+                <?php while($row = mysqli_fetch_array($data["kq"])){ 
 				if(($row["avatar"]!=NULL)){  ?>
-                       <img class ="ml-5" src = "public/upload/images/" <?php echo $row["avatar"]; ?> style="border-radius:50%; height:100px; width:10px;"> 
-                   
+                       <img class ="ml-5" src = "public/upload/images/<?php echo $row["avatar"]; ?>" style="border-radius:50%; height:130px; width:130px;">       
                       
                 <?php } else { ?>
-                    <img class='ml-5 ' src ="public/upload/images/avatar.png" style="border-radius:50%; height:100px; width:100px;"> 
+                    <img class='ml-5 ' src ="public/upload/images/avatar.png" style="border-radius:50%; height:130px; width:130px;"> 
               <?php
                     }
                 }
                     ?>
+              
                     <?php
                     if (isset($_SESSION['email'])) {
                         echo "<a class='navbar-brand col-10 mt-3' href=''>" . $_SESSION['email'];
