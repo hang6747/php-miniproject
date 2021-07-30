@@ -7,15 +7,28 @@
                 $password = $_COOKIE['password'];
                 $userModel = $this->model("UserModel");
                 $kq = $userModel->LoginUser($email, $password);
+               
+               
+             
                 if(mysqli_num_rows($kq)!=0)
                 {
                     $_SESSION['email'] = $email;
+
                 }
                 }
             }  
             $test = $this->model("UserModel");
+            $email = NULL;
+            if (isset($_SESSION["email"]))
+            {
+                $email = $_SESSION["email"];
+            }
+          
             $view = $this->view("index", [
-                "users" => $test->getUser()
+                "users" => $test->getUser(),
+                "test" => $test->findUserEmail($email),
+                "kq"   => $test->findUserEmail($email),
+               
             ]);
 	    }
         
@@ -70,11 +83,9 @@
             unset($_SESSION['errors']);
             unset($_SESSION['data']);
         }
-
-
         if(isset($_POST["submit"])){
             $email = $_POST['email'];
-            $password =($_POST['password']);
+            $password = $_POST["password"];
                 if(isset($_POST["remember"])){
                     setcookie("email", $email, time()+3600);
                     setcookie("password", $password, time()+3600);
@@ -83,12 +94,13 @@
                 $kq = $userModel->LoginUser($email, $password);
                 if(mysqli_num_rows($kq)==0)
                 {
-                    $errors['er']  = "<script>alert('Sai mật khẩu hoặc tên đăng nhập')</script>";
+                    $errors['er']  ="Sai email hoặc mật khẩu !";
                     $_SESSION['errors'] = $errors;
                     header('Location: ../User/dangnhap');
                 }
                 else{
                     $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
                     $errors['success']  = "<script>alert('Đăng nhập thành công')</script>";
                     $_SESSION['errors'] = $errors;
                     header('Location: ../User');
@@ -130,14 +142,24 @@
         }
         if(isset($_POST["submit"])) {
             $email = $_POST["email"];
-            $password =  md5($_POST["password"]);
+            $password =  $_POST["password"];
             $fullname = $_POST["fullname"];
-            $avatar = $_POST["avatar"];
+            $allowtypes    = array('jpg', 'png', 'jpeg', 'gif');
+            $avatar= $_FILES['avatar']['name'];
+            $imageFileType = pathinfo($avatar,PATHINFO_EXTENSION);
+            if (in_array($imageFileType,$allowtypes ))
+            {
+                $target = "public/upload/images/".basename($avatar);
+                move_uploaded_file($_FILES['avatar']['tmp_name'], $target);    
+            }
+            else{
+                $avatar= NULL;
+            }
             $phone = $_POST["phone"];
             $userModel = $this->model("UserModel");
             $kq = $userModel->RegisterUser($email, $password, $fullname, $avatar, $phone);
             if($kq==1) {
-                $errors['register']  = "<script>alert('Đăng kí tài khoản thành công')</script>";
+                $errors['register']  = "<script>alert('Đăng kí thành công ')</script>";
                 $_SESSION['errors'] = $errors;
                 header('Location: ../User');
             }
@@ -145,7 +167,6 @@
                 $alert = "<script>alert('Email đã tồn tại ')</script>";
                         $test = $this->model("UserModel");
                         $view = $this->view("user_create", [
-                            
                             "alert" => $alert,
                         ]);
             }
@@ -168,22 +189,46 @@
         }
     }
 
-        public function update($id)
-            {   
-                $test = $this->model("UserModel");
-                $read = $test->readUser($id); 
-                $view = $this->view("user_update", [
-                    "users" => $read
-                ]);
-            }
-
+  
         public function chinhsua($id)
         {   
             $errors = [];
+        if (isset($_POST))
+        {
+            if (empty($_POST['email']))
+            {
+                $errors['email'] = "Email is required!";
+            }
+    
+            if (empty($_POST['password']))
+            {
+                $errors['password'] = "Password is required!";
+            }
+            if ($errors)
+            {
+                $_SESSION['errors'] = $errors;
+                $_SESSION['data'] = $_POST;
+                header("location: ../information/$id");
+                exit();
+            }
+            unset($_SESSION['errors']);
+            unset($_SESSION['data']);
+        }
                 if (isset($_POST['submit'])) {
                     $email = $_POST['email'];
                     $fullname = $_POST['fullname'];
-                    $avatar = $_POST['avatar'];
+                    $allowtypes    = array('jpg', 'png');
+                    $avatar= $_FILES['avatar']['name'];
+                    $imageFileType = pathinfo($avatar,PATHINFO_EXTENSION);
+                    if (in_array($imageFileType,$allowtypes ))
+                    {
+                        $target = "public/upload/images/".basename($avatar);
+                        move_uploaded_file($_FILES['avatar']['tmp_name'], $target);    
+                    }
+                    else{
+                        $avatar= NULL;
+                        
+                    }
                     $phone = $_POST['phone'];
                     $password = $_POST['password'];
                     $test = $this->model("UserModel");
@@ -194,12 +239,13 @@
                         header('Location: http://localhost:7882/sun/php-miniproject/User');
                     }
                     else{
-                        $alert = "<script>alert('Email đã tồn tại ')</script>";
+                        $errors['update']  = "<script>alert('Email đã tồn tại!')</script>";
+                        $_SESSION['errors'] = $errors;
                         $test = $this->model("UserModel");
                         $read = $test->readUser($id); 
-                        $view = $this->view("user_update", [
+                        $view = $this->view("user_read", [
                             "users" => $read,
-                            "alert" => $alert,
+                           
                         ]);
                     }
                 }   

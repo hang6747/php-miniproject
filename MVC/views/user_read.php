@@ -33,114 +33,142 @@
 </head>
 
 <body>
+<?php if(isset($_SESSION['errors']['update'])){                
+                             echo $_SESSION['errors']['update']; 
+                             $_SESSION['errors']['update'] = NULL;
+                            }
+                             ?>
 
     <div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="http://localhost:7882/sun/php-miniproject/User">Admin</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+    <div class="pos-f-t container-fluid">
+  <div class="collapse " id="navbarToggleExternalContent">
+    <div class="bg-dark pt-2" style="padding-bottom:-20px;">
+    <nav class="navbar navbar-expand-md navbar-light">
+    <div class="container-fluid d-flex flex-md-wrap justify-content-around">
+        <div class=" " id="collapsingNavbar" >
+            <ul class="nav navbar-nav d-flex justify-content-around">
+                <li class="nav-item ">
+                   <a class="nav-link mr-5" style="color:white;" href="http://localhost:7882/sun/php-miniproject/User"><h5><b>HOME PAGE</b></h5></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mr-5" href="http://localhost:7882/sun/php-miniproject/User"  style="color:white;"><h5><b>LIST USER</b></h5></a>
+                </li>
+                <?php if (isset($_SESSION['email'])) { ?>
+                <li class="nav-item">
+                    <a class="nav-link mr-5" href="#"  style="color:white;"><h5><b>PROFILE</b></h5></a>
+                </li>
+                <?php } ?>
+                <li class="dropdown mt-2">
+                    <a class="dropdown-toggle" style="color:white;" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> 
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <?php 
+                    if (isset($_SESSION['email'])) { ?>
+                        <li><a href="#" style="color:black; font-size:15px; "><i class="fa fa-gear fa-fw" ></i> Update Profile</a></li>
+                       
+                        <li><a href="./User/logout" style="color:black; font-size:15px;" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
+                    <?php }
+                    else { ?>
+                        <li><a href="./User/dangnhap"style="color:black; font-size:15px;  "><i class="fa fa-user fa-fw"></i>Login</a></li>
+                        <li><a href="./User/dangki" style="color:black; font-size:15px;"><i class="fa fa-gear fa-fw"></i>Sign Up</a></li>
+                     <?php } ?>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
-                <!-- /.dropdown -->
             </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        
-                        <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">List User</a>
-                                </li>
-                                <li>
-                                    <a href="#">Create User</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
+        </div>
+    </div>
+</nav>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div>
 
         <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">User
-                            <small>Read</small>
-                        </h1>
+                    <div class="col-lg-12 d-flex justify-content-center">
+                        <h1 class="page-header">User Profile</h1>
                     </div>
                     <!-- /.col-lg-12 -->
-                    <div class="col-lg-7" style="padding-bottom:120px">
-                        
-                            <?php while($row = mysqli_fetch_array($data["users"])){ ?>
+                    <div class="col-lg-12" style="padding-bottom:120px">
+
+                            <div class="container mt-5 mb-5">
+
+
+	<div class="row mt-3 d-flex justify-content-evenly container">
+		<div class=" ml-5 pl-4 profile col-4 d-flex flex-column ">
+			<div class=" ml-5 pl-2 mb-2">
+				<h4 style="margin-left: 29px;">Profile</h4>
+			</div>
+			<div class ="image mb-3 mt-3">
+            <?php while($row = mysqli_fetch_array($data["users"])){ 
+				if(($row["avatar"]!=NULL)){  ?>
+					<img src="<?php echo "http://localhost:7882/sun/php-miniproject/public/upload/images/" . $row["avatar"]; ?>" style="width:250px; height:250px;float:left; border-radius:50% ; margin-right: 50px;" >
+				<?php } else { ?>
+					<img src="http://localhost:7882/sun/php-miniproject/public/upload/images/avatar.png" style="width:250px; height:250px;float:left; border-radius:50% ; margin-right: 50px;" >
+				<?php } ?>
+			</div>
+			<div class="user-name d-flex justify-content-center flex-column align-items-center" style="margin-left:-84px">
+				<h5><?php echo $row["fullname"]; ?> </h5>
+
+				<p style="border-bottom: 1px solid #DCDCDC;"><?php echo $row["email"];?></p>
+			</div>
+			<div class="phone">
+				<p style="border-bottom: 1px solid #DCDCDC;" ><img src="http://localhost:7882/sun/php-miniproject/public/upload/images/phone.jpg" style="height: 30px; width: 30px;" class="mr-2">  <?php echo $row["phone"];?></p>
+			</div>
+			
+		</div>		
+
+       		<div class="col-6 ml-5">
+				   <h4 style="margin-left: 200px;" class="mb-4"> Edit User</h4>
+                   <form action="../chinhsua/<?php echo $row["id"]; ?>" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label>Email</label>
-                                <div><?php echo $row["email"]; ?></div>
+                            <label><b>Email</b></label>
+                            <input type="email" class="form-control  <?php if(isset($_SESSION['errors']['email'])):?>is-invalid<?php endif?>" name="email" value=<?php echo $row["email"]; ?> placeholder="Please Enter Email" />
+                                <?php if(isset($_SESSION['errors']['email'])):?>
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    <?php echo $_SESSION['errors']['email']?>
+                                    </div>
+                                <?php endif?>
                             </div>
                             <div class="form-group">
-                                <label>Fullname</label>
-                                <div><?php echo $row["fullname"]; ?></div>
+                                <label><b>Fullname</b></label>
+                                <input class="form-control" name="fullname" value="<?php echo $row["fullname"] ?>" placeholder="<?php echo $row["fullname"] ?>" />
                             </div>
                             <div class="form-group">
-                                <label>Avatar</label>
-                                <div><?php echo $row["avatar"]; ?></div>
+                                <label><b>Avatar</b></label>
+                                <input type="file" value="<?php echo $row["avatar"] ?>" name="avatar" />
                             </div>
                             <div class="form-group">
-                                <label>Phone</label>
-                                <div><?php echo $row["phone"]; ?></div>
+                                <label><b>Phone</b></label>
+                                <input class="form-control" name="phone" value="<?php echo $row["phone"] ?>" placeholder="Please Enter Phone" />
                             </div>
                             <div class="form-group">
-                                <label>Password</label>
-                                <div><?php echo $row["password"]; ?></div>
+                                <label><b>Password</b></label>
+                                <input type="password" class="form-control  <?php if(isset($_SESSION['errors']['password'])):?>is-invalid<?php endif?>" name="password" value="<?php echo $row["password"] ?>" placeholder="Please Enter Password" />
+                                    <?php if(isset($_SESSION['errors']['password'])):?>
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    <?php echo $_SESSION['errors']['password']?>
+                                    </div>
+                                <?php endif?>
                             </div>
-                            <?php } ?>
+                    <div class=" d-flex align-items-center flex-column">
+                    <button type="submit" name="submit" class="btn btn-primary mt-3">Send</button>
+                    </div>
+                </form>
+                </div>
+       		</div>
+	</div>
+    <?php } ?>
                         
                     </div>
                 </div>

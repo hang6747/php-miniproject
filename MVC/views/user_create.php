@@ -39,89 +39,66 @@
  ?>
     <div id="wrapper">
 
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="../User">HOME</a>
-            </div>
-            <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <!-- /.dropdown -->
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+    <div class="pos-f-t container-fluid">
+  <div class="collapse " id="navbarToggleExternalContent">
+    <div class="bg-dark pt-2" style="padding-bottom:-20px;">
+    <nav class="navbar navbar-expand-md navbar-light">
+    <div class="container-fluid d-flex flex-md-wrap justify-content-around">
+        <div class=" " id="collapsingNavbar" >
+            <ul class="nav navbar-nav d-flex justify-content-around">
+                <li class="nav-item ">
+                   <a class="nav-link mr-5" style="color:white;" href="http://localhost:7882/sun/php-miniproject/User"><h5><b>HOME PAGE</b></h5></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mr-5" href="http://localhost:7882/sun/php-miniproject/User"  style="color:white;"><h5><b>LIST USER</b></h5></a>
+                </li>
+                <?php if (isset($_SESSION['email'])) { ?>
+                <li class="nav-item">
+                    <a class="nav-link mr-5" href="#"  style="color:white;"><h5><b>PROFILE</b></h5></a>
+                </li>
+                <?php } ?>
+                <li class="dropdown mt-2">
+                    <a class="dropdown-toggle" style="color:white;" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> 
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <?php 
+                    if (isset($_SESSION['email'])) { ?>
+                        <li><a href="#" style="color:black; font-size:15px; "><i class="fa fa-gear fa-fw" ></i> Update Profile</a></li>
+                       
+                        <li><a href="./User/logout" style="color:black; font-size:15px;" ><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="login.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
+                    <?php }
+                    else { ?>
+                        <li><a href="./User/dangnhap"style="color:black; font-size:15px;  "><i class="fa fa-user fa-fw"></i>Login</a></li>
+                        <li><a href="./User/dangki" style="color:black; font-size:15px;"><i class="fa fa-gear fa-fw"></i>Sign Up</a></li>
+                     <?php } ?>
                     </ul>
                     <!-- /.dropdown-user -->
                 </li>
-                <!-- /.dropdown -->
             </ul>
-            <!-- /.navbar-top-links -->
+        </div>
+    </div>
+</nav>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div>
 
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
-                        </li>
-                        
-                        <li>
-                            <a href="#"><i class="fa fa-users fa-fw"></i> User<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">List User</a>
-                                </li>
-                                <li>
-                                    <a href="#">Create User</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
-            </div>
-            <!-- /.navbar-static-side -->
-        </nav>
-
-        <!-- Page Content -->
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row d-flex justify-content-center">
                     <div class="col-7 d-flex justify-content-center mb-5">
-                        <h1 class="page-header">User
-                            <small>Create</small>
+                        <h1 class="page-header">User Creat
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
                     <div class="col-6 border" style="padding-bottom:120px">
-                        <form action="./register" method="POST">
+                        <form action="./register" method="POST" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label><b>Email </b></label>
                               

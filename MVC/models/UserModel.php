@@ -25,10 +25,16 @@
         public function readUser($id)
         {
             $sql = "SELECT * FROM users WHERE id = '$id' ";
-            
             $result = mysqli_query($this->conn, $sql);
             return $result;   
         }
+        public function findUserEmail($email)
+        {
+            $sql = "SELECT * FROM users WHERE email = '$email' ";
+            $result = mysqli_query($this->conn, $sql);
+            return $result;   
+        }
+
 
         public function deleteUser($id){
             $sql = "DELETE FROM users WHERE id='$id' ";
