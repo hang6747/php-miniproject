@@ -172,8 +172,9 @@
                     <div class="d-flex flex-row"> 
                         <?php 
                             $total_page = $data["sotrang"];
-                            for($t=1; $t<=$total_page; $t++){
-                                echo "<button><a href='./User/Show/$t'>$t </a></button>";
+                            for($t=1; $t<=$total_page; $t++){ ?>
+                                <button><a href="<?php echo $_SESSION['url']?>User/Show/<?php echo $t?>"><?php echo $t?> </a></button>
+                            <?php 
                             }                           
                         ?>
                     </div>
