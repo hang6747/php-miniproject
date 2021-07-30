@@ -1,6 +1,6 @@
 <?php
     class User extends Controller{
-        public $url = "http://localhost:7882/sun/php-miniproject/";
+        public $url = "http://localhost/php-miniproject/";
         public function __construct()
         {
             if(empty($_SESSION['email'])){
@@ -18,21 +18,44 @@
                 }  
             $_SESSION['url'] = $this->url;
         }
-        public function show()
-	    {   
+     //    public function show()
+	    // {   
+     //        $test = $this->model("UserModel");
+     //        $email = NULL;
+     //        if (isset($_SESSION["email"]))
+     //        {
+     //            $email = $_SESSION["email"];
+     //        }
+          
+     //        $view = $this->view("index", [
+     //            "users" => $test->getUser(),
+     //            "test" => $test->findUserEmail($email),
+     //            "kq"   => $test->findUserEmail($email),
+     //        ]);
+	    // }
+
+//phan trang
+        public function show($page)
+        { 
             $test = $this->model("UserModel");
             $email = NULL;
             if (isset($_SESSION["email"]))
             {
                 $email = $_SESSION["email"];
             }
-          
+            
+            $total = mysqli_num_rows($test->getUser1());
+            $limit = 8;
+            $start = ($page - 1)*$limit;
+            $so_trang = ceil($total/$limit);
             $view = $this->view("index", [
-                "users" => $test->getUser(),
+                "users" => $test->getUser($start, $limit),
                 "test" => $test->findUserEmail($email),
-                "kq"   => $test->findUserEmail($email),
+                 "kq"   => $test->findUserEmail($email),
+                "count" => $test->countUser(),
+                "sotrang" => $so_trang
             ]);
-	    }
+        }
         
         public function dangnhap()
 	    {   
