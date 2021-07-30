@@ -163,13 +163,14 @@
                        
                         </tbody>
                     </table>
-                    <?php 
-                        $total_page = $data["sotrang"];
-                        for($t=1; $t<=$total_page; $t++){
-                            echo "<button><a href='./User/Show/$t'>$t </a></button>";
-                        }
-                        
-                    ?>
+                    <div class="d-flex flex-row"> 
+                        <?php 
+                            $total_page = $data["sotrang"];
+                            for($t=1; $t<=$total_page; $t++){
+                                echo "<button><a href='./User/Show/$t'>$t </a></button>";
+                            }                           
+                        ?>
+                    </div>
                 </div>
                 <!-- /.row -->
          
