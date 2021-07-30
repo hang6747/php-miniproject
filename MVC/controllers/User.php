@@ -1,7 +1,28 @@
 <?php
     class User extends Controller{
-        public function show()
-	    {    if(empty($_SESSION['email'])){
+     //    public function show()
+	    // {    if(empty($_SESSION['email'])){
+     //        if(isset($_COOKIE['email'])){   
+     //            $email = $_COOKIE['email'];
+     //            $password = $_COOKIE['password'];
+     //            $userModel = $this->model("UserModel");
+     //            $kq = $userModel->LoginUser($email, $password);
+     //            if(mysqli_num_rows($kq)!=0)
+     //            {
+     //                $_SESSION['email'] = $email;
+     //            }
+     //            }
+     //        }  
+     //        $test = $this->model("UserModel");
+     //        $view = $this->view("index", [
+     //            "users" => $test->getUser(),
+     //            "count" => $test->countUser()
+     //        ]);
+	    // }
+
+//phan trang
+        public function show($page)
+        {    if(empty($_SESSION['email'])){
             if(isset($_COOKIE['email'])){   
                 $email = $_COOKIE['email'];
                 $password = $_COOKIE['password'];
@@ -14,10 +35,17 @@
                 }
             }  
             $test = $this->model("UserModel");
+
+            $total = mysqli_num_rows($test->getUser1());
+            $limit = 8;
+            $start = ($page - 1)*$limit;
+            $so_trang = ceil($total/$limit);
             $view = $this->view("index", [
-                "users" => $test->getUser()
+                "users" => $test->getUser($start, $limit),
+                "count" => $test->countUser(),
+                "sotrang" => $so_trang
             ]);
-	    }
+        }
         
         public function dangnhap()
 	    {   
@@ -41,7 +69,7 @@
         {          
             $test = $this->model("UserModel");
             $test->deleteUser($id); 
-            header('Location: http://localhost:7882/sun/php-miniproject/User');
+            header('Location: http://localhost/php-miniproject/User');
         }
 
         
@@ -191,7 +219,7 @@
                     if($kq==1) {
                         $errors['update']  = "<script>alert('Update thành công')</script>";
                         $_SESSION['errors'] = $errors;
-                        header('Location: http://localhost:7882/sun/php-miniproject/User');
+                        header('Location: http://localhost/php-miniproject/User');
                     }
                     else{
                         $alert = "<script>alert('Email đã tồn tại ')</script>";

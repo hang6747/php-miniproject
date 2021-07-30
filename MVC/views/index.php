@@ -137,8 +137,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">User
-                            <small>List</small>
+                        <h1 class="page-header">User 
+                            <?php 
+                                $ro = mysqli_fetch_array($data["count"]); 
+                                $total_user= $ro["total"];
+                            ?> 
+                            <small>List: <?php echo $total_user; ?> Users</small>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -153,7 +157,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php while($row = mysqli_fetch_array($data["users"])){ ?>
+                        <?php 
+                        while($row = mysqli_fetch_array($data["users"])){ 
+                            ?>
                             <tr class="odd gradeX" align="center">
                                 <td><?php echo $row["id"]; ?></td>
                                 <td><?php echo $row["email"]; ?></td>
@@ -170,6 +176,14 @@
                         <?php } ?>
                         </tbody>
                     </table>
+                    
+                    <?php 
+                        $total_page = $data["sotrang"];
+                        for($t=1; $t<=$total_page; $t++){
+                            echo "<button><a href='./User/Show/$t'>$t </a></button> ";
+                        }
+                        
+                    ?>
                 </div>
                 <!-- /.row -->
             </div>

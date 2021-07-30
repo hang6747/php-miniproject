@@ -1,9 +1,20 @@
 <?php
     class UserModel extends DB{
-        function getUser(){
+        // function getUser(){
+        //     $sql = "SELECT *FROM users";
+        //     return mysqli_query($this->conn, $sql);
+        // }
+
+//phan trang
+        function getUser1(){
             $sql = "SELECT *FROM users";
             return mysqli_query($this->conn, $sql);
         }
+        function getUser($start, $limit){
+            $sql = "SELECT *FROM users LIMIT $start, $limit";
+            return mysqli_query($this->conn, $sql);
+        }
+
 
         public function LoginUser($email, $password)
 	    {
@@ -47,6 +58,14 @@
                return 1;
            }
             return 0;
+        }
+
+        public function countUser()
+        {
+            $sql = "SELECT COUNT(*) AS 'total' FROM users ";
+            
+            $result = mysqli_query($this->conn, $sql);
+            return $result;   
         }
 
     }
