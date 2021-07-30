@@ -127,7 +127,13 @@
          
             <div class="row col-10  d-flex justify-content-center mt-5">
                 <div class="col-lg-12 d-flex justify-content-center  mb-3  ">
-                    <h1 class="page-header">USER MANAGE </h1>
+                    <h1 class="page-header">USER MANAGE 
+                        <?php 
+                            $ro = mysqli_fetch_array($data["count"]); 
+                            $total_user= $ro["total"];
+                        ?> 
+                        <small>(<?php echo $total_user; ?> users)</small>
+                    </h1>
                 </div>
                     <!-- /.col-lg-12 -->
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
